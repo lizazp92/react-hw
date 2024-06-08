@@ -27,7 +27,12 @@ function Main() {
             ref={inputRef}
             className="Main-greetForm-input-text"
           />
-          <Button id="addNameBtn" type="submit" className="Main-greetForm-btn">
+          <Button
+            variant="success"
+            id="addNameBtn"
+            type="submit"
+            className="Main-greetForm-btn"
+          >
             <span className="Main-greetForm-btn-icon">
               <IoIosArrowForward />
             </span>
