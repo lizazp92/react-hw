@@ -1,45 +1,50 @@
 @use "variables" as *;
+@import "./index.scss";
 
-.btn,
-.btn-success {
-  font-size: 2rem;
-}
+.Main {
+  @extend .d-flex;
+  @extend .align-items-center;
+  @extend .flex-column;
 
-.Main-form-container {
-  width: 45vw;
-  height: 55px;
-  background-color: $primary-color;
-  position: relative;
+  &-form-container {
+    width: 45vw;
+    height: 55px;
+    background-color: $primary-color;
+    position: relative;
 
-  .Main-greetForm {
-    input[type="text"] {
-      height: 100%;
-      width: 75%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding-left: 5%;
-      font-size: 2rem;
-      letter-spacing: 2.8px;
-      color: $input-color;
-      border: none;
-      &:focus {
-        outline: none;
-        background-color: $input-focus;
+    .Main-greetForm {
+      &-input-text {
+        height: 100%;
+        width: 75%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-left: 5%;
+        font-size: 2rem;
+        letter-spacing: 2.8px;
+        color: $input-color;
+        border: none;
+        &:focus {
+          outline: none;
+          background-color: $input-focus;
+        }
       }
-    }
 
-    button[type="submit"] {
-      height: 100%;
-      width: 25%;
-      position: absolute;
-      right: 0;
-      top: 0;
-      span {
-        position: relative;
-        top: -7px;
-        left: 8px;
-        padding-right: 0.9rem;
+      &-btn {
+        @extend .rounded-0;
+        @extend .btn-success;
+        font-size: 2rem;
+        height: 100%;
+        width: 25%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        &-icon {
+          position: relative;
+          top: -7px;
+          left: 8px;
+          padding-right: 0.9rem;
+        }
       }
     }
   }

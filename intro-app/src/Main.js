@@ -1,5 +1,6 @@
 import { IoIosArrowForward } from "react-icons/io";
 import React, { useRef } from "react";
+import Button from "react-bootstrap/Button";
 
 function Main() {
   const inputRef = useRef();
@@ -10,7 +11,7 @@ function Main() {
     event.target.reset();
   };
   return (
-    <main className="d-flex align-items-center flex-column">
+    <main className="Main">
       <div className="Main-form-container">
         <form
           className="Main-greetForm"
@@ -24,16 +25,13 @@ function Main() {
             id="addName"
             name="addName"
             ref={inputRef}
+            className="Main-greetForm-input-text"
           />
-          <button
-            id="addNameBtn"
-            type="submit"
-            className="btn btn-success rounded-0"
-          >
-            <span>
+          <Button id="addNameBtn" type="submit" className="Main-greetForm-btn">
+            <span className="Main-greetForm-btn-icon">
               <IoIosArrowForward />
             </span>
-          </button>
+          </Button>
         </form>
       </div>
     </main>

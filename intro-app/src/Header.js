@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <header className="d-flex align-items-center flex-column">
+    <header className="Header">
       <h1 className="Header-title">Greeting App</h1>
     </header>
   );
