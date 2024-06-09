@@ -14,7 +14,7 @@ function Login() {
   };
 
   return (
-    <section>
+    <section className="Login">
       <div>
         {loginErrorAlert && (
           <AlertMessage errorAlertMessage={errorAlertMessage} />
@@ -31,6 +31,8 @@ function Login() {
               name="username"
             />
           </Form.Group>
+        </Row>
+        <Row className="mb-3">
           <Form.Group as={Col} md="4">
             <Form.Label>Password</Form.Label>
             <Form.Control
