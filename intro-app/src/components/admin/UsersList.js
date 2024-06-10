@@ -12,8 +12,6 @@ function UsersList() {
     { id: 8, username: "Opern", isActive: true, lastVisit: "now" },
   ];
 
-  const activeFalse = users.filter((user) => user.isActive === false);
-
   return (
     <ul className="d-flex flex-wrap justify-content-center list-unstyled gap-4">
       {users.map((user) => (

@@ -1,4 +1,4 @@
-import logo192 from "./images/logo192.png";
+import logo192 from "../../images/logo192.png";
 
 function Footer() {
   const reactHref = "https://react.dev/learn";

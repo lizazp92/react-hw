@@ -1,6 +1,6 @@
-import Landing from "./Landing";
+import Landing from "./components/landing/Landing";
 // import Login from "./Login";
-import AdminPage from "./AdminPage";
+import AdminPage from "./components/admin/AdminPage";
 
 function App() {
   // login page shows
