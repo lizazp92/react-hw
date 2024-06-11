@@ -1,0 +1,23 @@
+@use "variables" as *;
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+.App-light-theme {
+  background-color: $primary-bg;
+  color: $header-color;
+}
+
+.App-dark-theme {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}

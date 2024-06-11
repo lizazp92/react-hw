@@ -1,8 +1,9 @@
 import { useState } from "react";
 import UserInfo from "./UserInfo";
 import Button from "react-bootstrap/Button";
+import "../../styles/UserList.scss";
 
-function UsersList() {
+function UsersList({ darkMode }) {
   const users = [
     {
       id: 1,
@@ -99,12 +100,16 @@ function UsersList() {
           Moderator
         </Button>
       </div>
-      <ul className="d-flex flex-wrap justify-content-center list-unstyled gap-4">
+      <ul className="d-flex flex-wrap justify-content-center list-unstyled gap-4 m-0 UserList">
         {usersFiltered.map((user) => {
           console.log(user);
           return (
             <li key={user.id}>
-              <UserInfo user={user} onDelete={removeUserOnClick} />
+              <UserInfo
+                user={user}
+                onDelete={removeUserOnClick}
+                darkMode={darkMode}
+              />
             </li>
           );
         })}
