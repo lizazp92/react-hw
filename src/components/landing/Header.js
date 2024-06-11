@@ -1,7 +1,7 @@
-function Header() {
+function Header({ username }) {
   return (
     <header className="Header">
-      <h1 className="Header-title">Greeting App</h1>
+      <h1 className="Header-title">Greeting App. Hello, {username}!</h1>
     </header>
   );
 }

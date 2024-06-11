@@ -1,8 +1,9 @@
 import UsersList from "./UsersList";
-function AdminPage() {
+
+function AdminPage({ username }) {
   return (
     <div>
-      <h1 className="text-center pt-3">Admin Page</h1>
+      <h1 className="text-center pt-3">hello, {username}!</h1>
       <UsersList />
     </div>
   );

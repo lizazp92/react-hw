@@ -1,19 +1,39 @@
+import { useState } from "react";
 import Landing from "./components/landing/Landing";
-// import Login from "./Login";
+import Login from "./components/login/Login";
 import AdminPage from "./components/admin/AdminPage";
 
 function App() {
-  // login page shows
-  // const isLoggedIn = true;
+  // state to manage login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  // state to manage user role (user, admin)
+  const [role, setRole] = useState("");
 
-  // admin page shows
-  const isAdmin = true;
+  // function for setting roles
+  const handleLogin = (username) => {
+    setUsername(username);
+    if (username === "admin") {
+      setRole("admin");
+    } else {
+      setRole("user");
+    }
+    setIsLoggedIn(true);
+  };
 
-  //   check for whether the user is logged in
-  // return <div>{!isLoggedIn ? <Login /> : <Landing />}</div>;
-
-  //   check for whether the user is admin
-  return <div>{!isAdmin ? <Landing /> : <AdminPage />}</div>;
+  return (
+    <div>
+      {/* if not logged in, handle login. if the role is admin, go to Admin page.
+      otherwise landing page */}
+      {!isLoggedIn ? (
+        <Login handleLogin={handleLogin} />
+      ) : role === "admin" ? (
+        <AdminPage username={username} />
+      ) : (
+        <Landing username={username} />
+      )}
+    </div>
+  );
 }
 
 export default App;

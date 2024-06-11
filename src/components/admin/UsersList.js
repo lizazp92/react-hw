@@ -73,8 +73,6 @@ function UsersList() {
   const [selectedUserGroup, setSelectedUserGroup] = useState("all");
   // filtering users by clicking on remove btn
   const [selectedUsers, setSelectedUsers] = useState(users);
-  //filtering users by showing/hiding user's details
-  const [isVisible, setIsVisible] = useState(true);
 
   const groupFilterOnClick = (group) => {
     setSelectedUserGroup(group);
@@ -87,8 +85,6 @@ function UsersList() {
   const removeUserOnClick = (userId) => {
     setSelectedUsers((users) => users.filter((user) => user.id !== userId));
   };
-
-  // const toggleUserInfo =
 
   return (
     <div>

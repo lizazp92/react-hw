@@ -2,15 +2,64 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import { useState } from "react";
 import AlertMessage from "./AlertMessage";
 
-function Login() {
-  const loginErrorAlert = true;
-  const errorAlertMessage = "password";
+function Login({ handleLogin }) {
+  //if user loggs in under "user", landing page is rendered
+  //if user loggs in under "admin", admin page is rendered
+  //if user makes a mistake in username/password, AlertMessage is rendered
+
+  //array with usernames and passwords
+  const users = [
+    {
+      username: "admin1",
+      password: "123",
+    },
+    {
+      username: "user1",
+      password: "123",
+    },
+  ];
+  // initial state
+  const [data, setData] = useState({
+    username: "",
+    password: "",
+  });
+  //useState for errors
+  const [loginErrorAlert, setLoginErrorAlert] = useState(false);
+  const [errorAlertMessage, setErrorAlertMessage] = useState("");
+
+  const checkUser = () => {
+    const user = users.find((user) => user.username === data.username);
+    if (user) {
+      if (user.password === data.password) {
+        console.log("Logged in");
+        setLoginErrorAlert(false); // Hide alert if logged in
+
+        //handling logging in from app.js
+        handleLogin(user.username);
+      } else {
+        console.log("Wrong password");
+        setLoginErrorAlert(true);
+        setErrorAlertMessage("password");
+      }
+    } else {
+      console.log("Wrong username");
+      setLoginErrorAlert(true);
+      setErrorAlertMessage("username");
+    }
+  };
+
+  //getting user's input as a value
+  const changeHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    checkUser();
   };
 
   return (
@@ -29,6 +78,8 @@ function Login() {
               type="text"
               placeholder="Username"
               name="username"
+              onChange={changeHandler}
+              value={data.username}
             />
           </Form.Group>
         </Row>
@@ -40,6 +91,8 @@ function Login() {
               type="password"
               placeholder="Password"
               name="password"
+              onChange={changeHandler}
+              value={data.password}
             />
           </Form.Group>
         </Row>

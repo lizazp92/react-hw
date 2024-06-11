@@ -7,7 +7,6 @@ function AlertMessage({ errorAlertMessage }) {
     case "password":
       return <Alert variant="danger">Your password is incorrect.</Alert>;
   }
-  return <Alert variant="danger">Please try again.</Alert>;
 }
 
 export default AlertMessage;
