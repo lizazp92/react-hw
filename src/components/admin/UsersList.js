@@ -40,7 +40,7 @@ function UsersList() {
       id: 5,
       username: "Opay",
       icon: "https://randomuser.me/api/portraits/men/8.jpg",
-      group: "anon",
+      group: "moderator",
       isActive: false,
       lastVisit: "25.10.24",
     },
@@ -48,7 +48,7 @@ function UsersList() {
       id: 6,
       username: "Gauy",
       icon: "https://randomuser.me/api/portraits/men/12.jpg",
-      group: "anon",
+      group: "moderator",
       isActive: false,
       lastVisit: "03.12.21",
     },
@@ -64,21 +64,31 @@ function UsersList() {
       id: 8,
       username: "Opern",
       icon: "https://randomuser.me/api/portraits/men/4.jpg",
-      group: "anon",
+      group: "moderator",
       isActive: true,
       lastVisit: "now",
     },
   ];
+  // filtering users by groups
   const [selectedUserGroup, setSelectedUserGroup] = useState("all");
-  // const [selectedUsers, setSelectedUsers] = useState(users);
+  // filtering users by clicking on remove btn
+  const [selectedUsers, setSelectedUsers] = useState(users);
+  //filtering users by showing/hiding user's details
+  const [isVisible, setIsVisible] = useState(true);
 
   const groupFilterOnClick = (group) => {
     setSelectedUserGroup(group);
   };
   const usersFiltered =
     selectedUserGroup === "all"
-      ? users
-      : users.filter((user) => user.group === selectedUserGroup);
+      ? selectedUsers
+      : selectedUsers.filter((user) => user.group === selectedUserGroup);
+
+  const removeUserOnClick = (userId) => {
+    setSelectedUsers((users) => users.filter((user) => user.id !== userId));
+  };
+
+  // const toggleUserInfo =
 
   return (
     <div>
@@ -89,14 +99,16 @@ function UsersList() {
         <Button onClick={() => groupFilterOnClick("all")}>All</Button>
         <Button onClick={() => groupFilterOnClick("admin")}>Admin</Button>
         <Button onClick={() => groupFilterOnClick("user")}>User</Button>
-        <Button onClick={() => groupFilterOnClick("anon")}>Anon</Button>
+        <Button onClick={() => groupFilterOnClick("moderator")}>
+          Moderator
+        </Button>
       </div>
       <ul className="d-flex flex-wrap justify-content-center list-unstyled gap-4">
         {usersFiltered.map((user) => {
           console.log(user);
           return (
             <li key={user.id}>
-              <UserInfo user={user} />
+              <UserInfo user={user} onDelete={removeUserOnClick} />
             </li>
           );
         })}
