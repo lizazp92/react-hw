@@ -26,7 +26,7 @@ function Login({ handleLogin }) {
     username: "",
     password: "",
   });
-  //useState for errors
+  // useState for errors
   const [loginErrorAlert, setLoginErrorAlert] = useState(false);
   const [errorAlertMessage, setErrorAlertMessage] = useState("");
 
@@ -35,9 +35,9 @@ function Login({ handleLogin }) {
     if (user) {
       if (user.password === data.password) {
         console.log("Logged in");
-        setLoginErrorAlert(false); // Hide alert if logged in
+        setLoginErrorAlert(false); // hide alert if logged in
 
-        //handling logging in from app.js
+        // handling logging in from app.js
         handleLogin(user.username);
       } else {
         console.log("Wrong password");
