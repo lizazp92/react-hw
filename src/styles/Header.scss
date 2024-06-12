@@ -14,7 +14,7 @@
     text-align: center;
     color: $header-color;
     &-dark-mode {
-      color: rgb(135, 135, 135);
+      color: $admin-page-dark-mode;
     }
   }
 }

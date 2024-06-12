@@ -29,11 +29,11 @@
           background-color: $input-focus;
         }
         &-dark-mode {
-          background-color: rgb(92, 91, 91);
-          color: white;
+          background-color: $input-bg-dark-mode;
+          color: $primary-color;
           &:focus {
-            background-color: rgb(92, 91, 91);
-            color: white;
+            background-color: $input-bg-dark-mode;
+            color: $primary-color;
           }
         }
       }

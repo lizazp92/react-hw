@@ -6,18 +6,14 @@ body {
   position: relative;
   min-height: 100vh;
 }
-.App-light-theme {
-  background-color: $primary-bg;
-  color: $header-color;
-}
-
-.App-dark-theme {
-  background-color: #333333;
-  color: #ffffff;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.App {
+  &-dark-theme {
+    background-color: $app-dark-mode-bg;
+    color: $primary-color;
+  }
+  &-btn-theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 }

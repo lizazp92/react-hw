@@ -3,13 +3,14 @@ import Button from "react-bootstrap/Button";
 import Landing from "./components/landing/Landing";
 import Footer from "./components/landing/Footer";
 import Login from "./components/login/Login";
-import AdminPage from "./components/admin/AdminPage";
+import Admin from "./components/admin/Admin";
 import "./styles/App.scss";
 
 function App() {
-  // setting theme
+  // setting dark theme
   const [darkMode, setDarkMode] = useState(false);
 
+  //for button toggling dark theme
   const toggleTheme = () => {
     setDarkMode((prevMode) => !prevMode);
   };
@@ -38,7 +39,11 @@ function App() {
 
   return (
     <div>
-      <Button onClick={toggleTheme} className="theme-toggle" variant="info">
+      <Button
+        onClick={toggleTheme}
+        className="App-btn-theme-toggle"
+        variant="info"
+      >
         {darkMode ? "Light Mode" : "Dark Mode"}
       </Button>
       {/* if not logged in, handle login. if the role is admin, go to Admin page.
@@ -50,7 +55,7 @@ function App() {
         </div>
       ) : role === "admin1" ? (
         <div>
-          <AdminPage username={username} darkMode={darkMode} />
+          <Admin username={username} darkMode={darkMode} />
           <Footer />
         </div>
       ) : (

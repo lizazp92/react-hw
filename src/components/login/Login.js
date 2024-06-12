@@ -33,12 +33,14 @@ function Login({ handleLogin, darkMode }) {
   const [loginErrorAlert, setLoginErrorAlert] = useState(false);
   const [errorAlertMessage, setErrorAlertMessage] = useState("");
 
+  //a function for checking user's username and password
   const checkUser = () => {
     const user = users.find((user) => user.username === data.username);
     if (user) {
       if (user.password === data.password) {
         console.log("Logged in");
-        setLoginErrorAlert(false); // hide alert if logged in
+        // hide alert if logged in
+        setLoginErrorAlert(false);
 
         // handling logging in from app.js
         handleLogin(user.username);
@@ -59,6 +61,7 @@ function Login({ handleLogin, darkMode }) {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  //form submit
   const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
