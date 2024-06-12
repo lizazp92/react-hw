@@ -1,79 +1,88 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserInfo from "./UserInfo";
 import Button from "react-bootstrap/Button";
 import "../../styles/UserList.scss";
 
 function UsersList({ darkMode }) {
-  const users = [
-    {
-      id: 1,
-      username: "Kala",
-      icon: "https://randomuser.me/api/portraits/women/17.jpg",
-      group: "admin",
-      isActive: true,
-      lastVisit: "now",
-    },
-    {
-      id: 2,
-      username: "Kaja",
-      icon: "https://randomuser.me/api/portraits/women/18.jpg",
-      group: "user",
-      isActive: false,
-      lastVisit: "10.02.22",
-    },
-    {
-      id: 3,
-      username: "Poa",
-      icon: "https://randomuser.me/api/portraits/women/20.jpg",
-      group: "user",
-      isActive: true,
-      lastVisit: "now",
-    },
-    {
-      id: 4,
-      username: "Mait",
-      icon: "https://randomuser.me/api/portraits/men/2.jpg",
-      group: "user",
-      isActive: true,
-      lastVisit: "now",
-    },
-    {
-      id: 5,
-      username: "Opay",
-      icon: "https://randomuser.me/api/portraits/men/8.jpg",
-      group: "moderator",
-      isActive: false,
-      lastVisit: "25.10.24",
-    },
-    {
-      id: 6,
-      username: "Gauy",
-      icon: "https://randomuser.me/api/portraits/men/12.jpg",
-      group: "moderator",
-      isActive: false,
-      lastVisit: "03.12.21",
-    },
-    {
-      id: 7,
-      username: "Buayt",
-      icon: "https://randomuser.me/api/portraits/women/1.jpg",
-      group: "admin",
-      isActive: true,
-      lastVisit: "now",
-    },
-    {
-      id: 8,
-      username: "Opern",
-      icon: "https://randomuser.me/api/portraits/men/4.jpg",
-      group: "moderator",
-      isActive: true,
-      lastVisit: "now",
-    },
-  ];
+  //if there is an error from api it will return <p> with an error, line 94
+  const [error, setError] = useState(null);
+
+  // filtering users by clicking on remove btn
+  const [selectedUsers, setSelectedUsers] = useState([]);
+
   // filtering users by groups
   const [selectedUserGroup, setSelectedUserGroup] = useState("all");
-  // filtering users by clicking on remove btn
-  const [selectedUsers, setSelectedUsers] = useState(users);
+  //my idea: to show a fetched group of 10 users with selected fetched data.
+  //Include group, isActive from the array below to UserInfo. Leave sorting by group.
+  const users = [
+    {
+      group: "admin",
+      isActive: true,
+    },
+    {
+      group: "user",
+      isActive: false,
+    },
+    {
+      group: "user",
+      isActive: false,
+    },
+    {
+      group: "user",
+      isActive: true,
+    },
+    {
+      group: "moderator",
+      isActive: true,
+    },
+    {
+      group: "moderator",
+      isActive: true,
+    },
+    {
+      group: "admin",
+      isActive: true,
+    },
+    {
+      group: "moderator",
+      isActive: false,
+    },
+    {
+      group: "user",
+      isActive: false,
+    },
+    {
+      group: "user",
+      isActive: false,
+    },
+  ];
+
+  //fetching users from api with useEffect
+  useEffect(() => {
+    //show 10 users
+    fetch("https://randomuser.me/api/?results=10")
+      .then((result) => {
+        if (!result.ok) {
+          throw new Error("Network issue");
+        }
+        return result.json();
+      })
+      .then((json) => {
+        const fetchedUsers = json.results.map((user, index) => ({
+          // adding fetched data
+          ...user,
+          // adding group and isActive from array users
+          group: users[index].group,
+          isActive: users[index].isActive,
+        }));
+
+        setSelectedUsers(fetchedUsers);
+      })
+      .catch((error) => {
+        console.log("error");
+        setError(error.toString());
+      });
+  }, []);
 
   const groupFilterOnClick = (group) => {
     setSelectedUserGroup(group);
@@ -82,6 +91,10 @@ function UsersList({ darkMode }) {
     selectedUserGroup === "all"
       ? selectedUsers
       : selectedUsers.filter((user) => user.group === selectedUserGroup);
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   const removeUserOnClick = (userId) => {
     setSelectedUsers((users) => users.filter((user) => user.id !== userId));
@@ -101,18 +114,17 @@ function UsersList({ darkMode }) {
         </Button>
       </div>
       <ul className="d-flex flex-wrap justify-content-center list-unstyled gap-4 m-0 UserList">
-        {usersFiltered.map((user) => {
-          console.log(user);
-          return (
-            <li key={user.id}>
-              <UserInfo
-                user={user}
-                onDelete={removeUserOnClick}
-                darkMode={darkMode}
-              />
-            </li>
-          );
-        })}
+        {/* show first 10 users */}
+        {usersFiltered.slice(0, 10).map((user) => (
+          // not every user has a unique id from this api. so i used this instead
+          <li key={user.login.uuid}>
+            <UserInfo
+              user={user}
+              onDelete={removeUserOnClick}
+              darkMode={darkMode}
+            />
+          </li>
+        ))}
       </ul>
     </div>
   );

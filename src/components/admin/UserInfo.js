@@ -13,10 +13,14 @@ function UserInfo({ user, onDelete, darkMode }) {
       {" "}
       <Card.Body>
         <Card.Title className="UserInfo-title">
-          Username: {user.username}
+          {user.login.username}
         </Card.Title>
       </Card.Body>
-      <Card.Img variant="top" src={user.icon} className="UserInfo-img" />
+      <Card.Img
+        variant="top"
+        src={user.picture.large}
+        className="UserInfo-img"
+      />
       <Card.Body className="UserInfo-btn">
         <Button variant="info" onClick={() => setIsVisible(!isVisible)}>
           {isVisible ? "Hide profile" : "Show profile"}
@@ -27,16 +31,19 @@ function UserInfo({ user, onDelete, darkMode }) {
           {/* i added darkmode to children because somehow it won't apply to a parent tag */}
           <ListGroup className="list-group-flush">
             <ListGroup.Item className={darkMode ? "UserInfo-dark-theme" : ""}>
-              User ID: {user.id}
+              Location: {user.location.country}
             </ListGroup.Item>
             <ListGroup.Item className={darkMode ? "UserInfo-dark-theme" : ""}>
               Group: {user.group}
             </ListGroup.Item>
             <ListGroup.Item className={darkMode ? "UserInfo-dark-theme" : ""}>
-              Is active: {user.isActive.toString()}
+              First name: {user.name.first}
             </ListGroup.Item>
             <ListGroup.Item className={darkMode ? "UserInfo-dark-theme" : ""}>
-              Last visit: {user.lastVisit}
+              Last name: {user.name.last}
+            </ListGroup.Item>
+            <ListGroup.Item className={darkMode ? "UserInfo-dark-theme" : ""}>
+              Active: {user.isActive.toString()}
             </ListGroup.Item>
           </ListGroup>
           <Card.Body className="UserInfo-btn">
