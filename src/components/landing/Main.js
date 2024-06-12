@@ -1,8 +1,9 @@
 import { IoIosArrowForward } from "react-icons/io";
 import React, { useRef } from "react";
 import Button from "react-bootstrap/Button";
+import "../../styles/Main.scss";
 
-function Main() {
+function Main({ darkMode }) {
   const inputRef = useRef();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,7 +26,9 @@ function Main() {
             id="addName"
             name="addName"
             ref={inputRef}
-            className="Main-greetForm-input-text"
+            className={`Main-greetForm-input-text ${
+              darkMode ? "Main-greetForm-input-text-dark-mode" : ""
+            }`}
           />
           <Button
             variant="success"

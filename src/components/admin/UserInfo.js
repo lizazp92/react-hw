@@ -1,7 +1,6 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-
 import "../../styles/UserInfo.scss";
 import { useState } from "react";
 
@@ -10,7 +9,7 @@ function UserInfo({ user, onDelete, darkMode }) {
   const [isVisible, setIsVisible] = useState(true);
 
   return (
-    <Card className={`UserInfo-card ${darkMode ? "dark-mode" : ""}`}>
+    <Card className={`UserInfo-card ${darkMode ? "UserInfo-dark-theme" : ""}`}>
       {" "}
       <Card.Body>
         <Card.Title className="UserInfo-title">
@@ -27,16 +26,16 @@ function UserInfo({ user, onDelete, darkMode }) {
         <div>
           {/* i added darkmode to children because somehow it won't apply to a parent tag */}
           <ListGroup className="list-group-flush">
-            <ListGroup.Item className={darkMode ? "dark-mode" : ""}>
+            <ListGroup.Item className={darkMode ? "UserInfo-dark-theme" : ""}>
               User ID: {user.id}
             </ListGroup.Item>
-            <ListGroup.Item className={darkMode ? "dark-mode" : ""}>
+            <ListGroup.Item className={darkMode ? "UserInfo-dark-theme" : ""}>
               Group: {user.group}
             </ListGroup.Item>
-            <ListGroup.Item className={darkMode ? "dark-mode" : ""}>
+            <ListGroup.Item className={darkMode ? "UserInfo-dark-theme" : ""}>
               Is active: {user.isActive.toString()}
             </ListGroup.Item>
-            <ListGroup.Item className={darkMode ? "dark-mode" : ""}>
+            <ListGroup.Item className={darkMode ? "UserInfo-dark-theme" : ""}>
               Last visit: {user.lastVisit}
             </ListGroup.Item>
           </ListGroup>

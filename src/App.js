@@ -45,7 +45,7 @@ function App() {
       otherwise landing page. and pass usernames to these pages*/}
       {!isLoggedIn ? (
         <div>
-          <Login handleLogin={handleLogin} />
+          <Login handleLogin={handleLogin} darkMode={darkMode} />
           <Footer />
         </div>
       ) : role === "admin1" ? (
@@ -54,7 +54,7 @@ function App() {
           <Footer />
         </div>
       ) : (
-        <Landing username={username} />
+        <Landing username={username} darkMode={darkMode} />
       )}
     </div>
   );

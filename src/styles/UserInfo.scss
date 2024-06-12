@@ -1,25 +1,22 @@
-.UserInfo-card {
-  width: 15rem;
-  // background-color: grey;
-}
-
-.dark-mode {
-  background-color: #5d5a5a;
-  color: #fff;
-}
-
-.UserInfo-title {
-  text-align: center;
-}
-
-.UserInfo-img {
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  padding-bottom: 1rem;
-}
-
-.UserInfo-btn {
-  display: flex;
-  justify-content: center;
+.UserInfo {
+  &-card {
+    width: 15rem;
+  }
+  &-title {
+    text-align: center;
+  }
+  &-img {
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    padding-bottom: 1rem;
+  }
+  &-btn {
+    display: flex;
+    justify-content: center;
+  }
+  &-dark-theme {
+    background-color: #5d5a5a;
+    color: #fff;
+  }
 }

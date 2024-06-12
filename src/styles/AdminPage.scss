@@ -1,10 +1,6 @@
 @use "variables" as *;
-@import "./index.scss";
 
-.Header {
-  @extend .d-flex;
-  @extend .align-items-center;
-  @extend .flex-column;
+.AdminPage {
   &-title {
     margin-top: 0;
     margin-bottom: 0;

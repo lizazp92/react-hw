@@ -4,8 +4,9 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import AlertMessage from "./AlertMessage";
+import "../../styles/Login.scss";
 
-function Login({ handleLogin }) {
+function Login({ handleLogin, darkMode }) {
   //if user loggs in under "user", landing page is rendered
   //if user loggs in under "admin", admin page is rendered
   //if user makes a mistake in username/password, AlertMessage is rendered
@@ -21,11 +22,13 @@ function Login({ handleLogin }) {
       password: "123",
     },
   ];
+
   // initial state
   const [data, setData] = useState({
     username: "",
     password: "",
   });
+
   // useState for errors
   const [loginErrorAlert, setLoginErrorAlert] = useState(false);
   const [errorAlertMessage, setErrorAlertMessage] = useState("");
@@ -80,6 +83,9 @@ function Login({ handleLogin }) {
               name="username"
               onChange={changeHandler}
               value={data.username}
+              className={`Login-input ${
+                darkMode ? "Login-input-dark-mode" : ""
+              }`}
             />
           </Form.Group>
         </Row>
@@ -93,6 +99,9 @@ function Login({ handleLogin }) {
               name="password"
               onChange={changeHandler}
               value={data.password}
+              className={`Login-input ${
+                darkMode ? "Login-input-dark-mode" : ""
+              }`}
             />
           </Form.Group>
         </Row>
