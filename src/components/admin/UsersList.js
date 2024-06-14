@@ -1,9 +1,13 @@
+import React from "react";
+import { ThemeContext } from "../DarkTheme";
 import { useState, useEffect } from "react";
 import UserInfo from "./UserInfo";
 import Button from "react-bootstrap/Button";
 import "../../styles/UserList.scss";
 
-function UsersList({ darkMode }) {
+function UsersList() {
+  const { darkMode } = React.useContext(ThemeContext);
+
   //if there is an error from api it will return a div with an error, line 112
   const [error, setError] = useState(null);
 

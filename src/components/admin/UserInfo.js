@@ -1,10 +1,15 @@
+import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import "../../styles/UserInfo.scss";
 import { useState } from "react";
+import { ThemeContext } from "../DarkTheme";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
+import "../../styles/UserInfo.scss";
 
-function UserInfo({ user, onDelete, darkMode }) {
+function UserInfo({ user, onDelete }) {
+  const { darkMode } = React.useContext(ThemeContext);
   //filtering users by showing/hiding user's details
   const [isVisible, setIsVisible] = useState(true);
 
@@ -23,8 +28,12 @@ function UserInfo({ user, onDelete, darkMode }) {
         alt="user icon"
       />
       <Card.Body className="UserInfo-btn">
-        <Button variant="info" onClick={() => setIsVisible(!isVisible)}>
-          {isVisible ? "Hide profile" : "Show profile"}
+        <Button
+          variant="info"
+          onClick={() => setIsVisible(!isVisible)}
+          className="UserInfo-btn-content"
+        >
+          {isVisible ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </Button>
       </Card.Body>
       {isVisible && (

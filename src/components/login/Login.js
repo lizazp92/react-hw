@@ -1,13 +1,16 @@
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import React from "react";
+import { ThemeContext } from "../DarkTheme";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import AlertMessage from "./AlertMessage";
 
 import "../../styles/Login.scss";
 
-function Login({ handleLogin, darkMode, handleShowRegister }) {
+function Login({ handleLogin, handleShowRegister }) {
+  const { darkMode } = React.useContext(ThemeContext);
   //if user loggs in under "user", landing page is rendered
   //if user loggs in under "admin", admin page is rendered
   //if user makes a mistake in username/password, AlertMessage is rendered

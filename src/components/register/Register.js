@@ -1,3 +1,5 @@
+import React from "react";
+import { ThemeContext } from "../DarkTheme";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -6,7 +8,8 @@ import { useState } from "react";
 import "../../styles/Register.scss";
 import "../../styles/Login.scss";
 
-function Register({ darkMode, handleRegister, handleShowLogin }) {
+function Register({ handleRegister, handleShowLogin }) {
+  const { darkMode } = React.useContext(ThemeContext);
   const [formData, setFormData] = useState({
     username: "",
     password: "",

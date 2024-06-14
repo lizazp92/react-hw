@@ -1,6 +1,9 @@
+import React from "react";
+import { ThemeContext } from "../DarkTheme";
 import "../../styles/Header.scss";
 
-function Header({ username, darkMode }) {
+function Header({ username }) {
+  const { darkMode } = React.useContext(ThemeContext);
   return (
     <header className="Header">
       <h1

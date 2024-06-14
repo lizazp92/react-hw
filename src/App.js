@@ -1,16 +1,15 @@
+import React from "react";
+import { ThemeContext, ThemeProvider } from "./components/DarkTheme";
 import { useState } from "react";
+import { Space, Switch } from "antd";
 import Landing from "./components/landing/Landing";
 import Footer from "./components/landing/Footer";
 import Login from "./components/login/Login";
 import Admin from "./components/admin/Admin";
 import Register from "./components/register/Register";
-import { Space, Switch } from "antd";
-
 import "./styles/App.scss";
 
 function App() {
-  // state to darkMode
-  const [darkMode, setDarkMode] = useState(false);
   // state to manage login status (logged in - true/false)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   //state to pass username to admin/landing pages
@@ -21,19 +20,6 @@ function App() {
   const [showRegister, setShowRegister] = useState(false);
   //for showing registered username(from form in Register.js) in Header component (Main)
   const [registeredUsername, setRegisteredUsername] = useState("");
-
-  //for button toggling dark theme
-  const toggleTheme = () => {
-    setDarkMode((prevMode) => !prevMode);
-  };
-
-  // I added class to the body because otherwise only div's bg color would change
-  // I'm so not sure if that's an ok approach
-  if (darkMode) {
-    document.body.classList.add("App-dark-theme");
-  } else {
-    document.body.classList.remove("App-dark-theme");
-  }
 
   const handleShowRegister = () => {
     setShowRegister(true);
@@ -58,47 +44,52 @@ function App() {
   };
 
   return (
-    <div>
-      {/* Ant design library, toggle switch */}
-      <Space direction="vertical" className="App-btn-theme-toggle">
-        <Switch
-          checked={darkMode}
-          checkedChildren="Dark theme"
-          unCheckedChildren="Light theme"
-          onChange={toggleTheme}
-        />
-      </Space>
-      {/* if not logged in, handle login and rendering register component onclick. if the role is admin, go to Admin page.
-      otherwise landing page. and pass usernames to these pages*/}
-      {!isLoggedIn ? (
-        showRegister ? (
+    <ThemeProvider>
+      <ThemeContext.Consumer>
+        {({ darkMode, toggleTheme }) => (
           <div>
-            <Register
-              handleShowLogin={handleShowLogin}
-              darkMode={darkMode}
-              handleRegister={handleRegister}
-            />
-            <Footer />
+            {/* Ant design library, toggle switch */}
+            <Space direction="vertical" className="App-btn-theme-toggle">
+              <Switch
+                checked={darkMode}
+                checkedChildren="Dark theme"
+                unCheckedChildren="Light theme"
+                onChange={toggleTheme}
+              />
+            </Space>
+
+            {/* if not logged in, handle login and rendering register component onclick. if the role is admin, go to Admin page.
+        otherwise landing page. and pass usernames to these pages*/}
+            {!isLoggedIn ? (
+              showRegister ? (
+                <div>
+                  <Register
+                    handleShowLogin={handleShowLogin}
+                    handleRegister={handleRegister}
+                  />
+                  <Footer />
+                </div>
+              ) : (
+                <div>
+                  <Login
+                    handleLogin={handleLogin}
+                    handleShowRegister={handleShowRegister}
+                  />
+                  <Footer />
+                </div>
+              )
+            ) : role === "admin1" ? (
+              <div>
+                <Admin username={username} />
+                <Footer />
+              </div>
+            ) : (
+              <Landing username={registeredUsername} />
+            )}
           </div>
-        ) : (
-          <div>
-            <Login
-              handleLogin={handleLogin}
-              handleShowRegister={handleShowRegister}
-              darkMode={darkMode}
-            />
-            <Footer />
-          </div>
-        )
-      ) : role === "admin1" ? (
-        <div>
-          <Admin username={username} darkMode={darkMode} />
-          <Footer />
-        </div>
-      ) : (
-        <Landing username={registeredUsername} darkMode={darkMode} />
-      )}
-    </div>
+        )}
+      </ThemeContext.Consumer>
+    </ThemeProvider>
   );
 }
 

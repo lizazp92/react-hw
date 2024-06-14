@@ -1,9 +1,11 @@
+import { ThemeContext } from "../DarkTheme";
 import { IoIosArrowForward } from "react-icons/io";
 import React, { useRef } from "react";
 import Button from "react-bootstrap/Button";
 import "../../styles/Main.scss";
 
-function Main({ darkMode }) {
+function Main() {
+  const { darkMode } = React.useContext(ThemeContext);
   const inputRef = useRef();
   const handleSubmit = (event) => {
     event.preventDefault();
