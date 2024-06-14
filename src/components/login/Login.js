@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import AlertMessage from "./AlertMessage";
-import Register from "../register/Register";
+
 import "../../styles/Login.scss";
 
 function Login({ handleLogin, darkMode, handleShowRegister }) {

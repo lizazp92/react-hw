@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Landing from "./components/landing/Landing";
 import Footer from "./components/landing/Footer";
 import Login from "./components/login/Login";
 import Admin from "./components/admin/Admin";
 import Register from "./components/register/Register";
+import { Space, Switch } from "antd";
 
 import "./styles/App.scss";
 
@@ -59,13 +59,15 @@ function App() {
 
   return (
     <div>
-      <Button
-        onClick={toggleTheme}
-        className="App-btn-theme-toggle"
-        variant="info"
-      >
-        {darkMode ? "Light Mode" : "Dark Mode"}
-      </Button>
+      {/* Ant design library, toggle switch */}
+      <Space direction="vertical" className="App-btn-theme-toggle">
+        <Switch
+          checked={darkMode}
+          checkedChildren="Dark theme"
+          unCheckedChildren="Light theme"
+          onChange={toggleTheme}
+        />
+      </Space>
       {/* if not logged in, handle login and rendering register component onclick. if the role is admin, go to Admin page.
       otherwise landing page. and pass usernames to these pages*/}
       {!isLoggedIn ? (

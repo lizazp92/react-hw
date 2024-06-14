@@ -61,11 +61,11 @@ function UsersList({ darkMode }) {
   useEffect(() => {
     //show 10 users
     fetch("https://randomuser.me/api/?results=10")
-      .then((result) => {
-        if (!result.ok) {
+      .then((response) => {
+        if (!response.ok) {
           throw new Error("Network issue");
         }
-        return result.json();
+        return response.json();
       })
       .then((json) => {
         const fetchedUsers = json.results.map((user, index) => ({
