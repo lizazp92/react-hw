@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import "../../styles/UserList.scss";
 
 function UsersList({ darkMode }) {
-  //if there is an error from api it will return <p> with an error, line 94
+  //if there is an error from api it will return a div with an error, line 112
   const [error, setError] = useState(null);
 
   // filtering users by clicking on remove btn
@@ -92,10 +92,6 @@ function UsersList({ darkMode }) {
       ? selectedUsers
       : selectedUsers.filter((user) => user.group === selectedUserGroup);
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
   const removeUserOnClick = (userId) => {
     setSelectedUsers((users) => users.filter((user) => user.id !== userId));
   };
@@ -113,6 +109,9 @@ function UsersList({ darkMode }) {
           Moderator
         </Button>
       </div>
+      {error && (
+        <div className="text-danger d-flex justify-content">Error: {error}</div>
+      )}
       <ul className="d-flex flex-wrap justify-content-center list-unstyled gap-4 m-0 UserList">
         {/* show first 10 users */}
         {usersFiltered.slice(0, 10).map((user) => (

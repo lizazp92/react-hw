@@ -4,9 +4,10 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import AlertMessage from "./AlertMessage";
+import Register from "../register/Register";
 import "../../styles/Login.scss";
 
-function Login({ handleLogin, darkMode }) {
+function Login({ handleLogin, darkMode, handleShowRegister }) {
   //if user loggs in under "user", landing page is rendered
   //if user loggs in under "admin", admin page is rendered
   //if user makes a mistake in username/password, AlertMessage is rendered
@@ -109,6 +110,9 @@ function Login({ handleLogin, darkMode }) {
           </Form.Group>
         </Row>
         <Button type="submit">Login</Button>
+        <Button variant="link" onClick={handleShowRegister}>
+          Register
+        </Button>
       </Form>
     </section>
   );

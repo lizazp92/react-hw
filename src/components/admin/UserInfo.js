@@ -20,6 +20,7 @@ function UserInfo({ user, onDelete, darkMode }) {
         variant="top"
         src={user.picture.large}
         className="UserInfo-img"
+        alt="user icon"
       />
       <Card.Body className="UserInfo-btn">
         <Button variant="info" onClick={() => setIsVisible(!isVisible)}>
