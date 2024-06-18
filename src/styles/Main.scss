@@ -28,11 +28,18 @@
           outline: none;
           background-color: $input-focus;
         }
+        &-dark-mode {
+          background-color: $input-bg-dark-mode;
+          color: $primary-color;
+          &:focus {
+            background-color: $input-bg-dark-mode;
+            color: $primary-color;
+          }
+        }
       }
 
       &-btn {
         @extend .rounded-0;
-        @extend .btn-success;
         font-size: 2rem;
         height: 100%;
         width: 25%;
